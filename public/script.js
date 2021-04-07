@@ -9,7 +9,16 @@ async function getChores() {
     const choreContainer = document.getElementById("chores");
     for (chore of chores) {
         const choreDiv = document.createElement('div'); 
-        choreDiv.innerHTML = chore.title;
+        choreDiv.className = "choreDiv";
+        const choreTitle = document.createElement('h4'); 
+        choreTitle.innerHTML = chore.title;
+        choreDiv.appendChild(choreTitle)
+        const choreTime = document.createElement('p'); 
+        choreTime.innerHTML = "Uppskattad tidsåtgång: " + chore.time + " min";
+        choreDiv.appendChild(choreTime)
+        const choreDate = document.createElement('p'); 
+        choreDate.innerHTML = "Slutdatum: " + chore.date;
+        choreDiv.appendChild(choreDate)
         choreContainer.appendChild(choreDiv);
     }
 

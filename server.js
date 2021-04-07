@@ -7,15 +7,15 @@ let chores = [
         "id": 1,
         "category": "Rensning",
         "title": "Rensa ogräs i bädd A2",
-        "time-est": 30,
-        "due-date": "2021-04-10"
+        "time": 30,
+        "date": "2021-04-10"
     },
     {
         "id": 2,
         "category": "Sådd",
         "title": "Så lupiner i bädd A2",
-        "time-est": 30,
-        "due-date": "2021-04-15"
+        "time": 30,
+        "date": "2021-04-15"
     }
 ]
 
@@ -53,8 +53,8 @@ app.delete('/api/chores', (req,res) => {
 app.put('/api/chores', (req,res) => {
     const index = chores.findIndex(chore => chore.id === req.body.id);
     if(index!== -1) {
-        const editedChore = chores.splice(index, 1);
-        res.status(200).json(editedChore);  
+        const editedChore = chores.splice(index, 1, req.body);
+        res.status(200).json(req.body);  
     }
     else {
         res.status(418).json(req.body);

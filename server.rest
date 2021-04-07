@@ -13,8 +13,8 @@ Content-Type: application/json
     "id": 3,
     "category": "Sådd",
     "title": "Så sockerärter i pluggbrätte",
-    "time-est": 30,
-    "due-date": "2021-04-17"
+    "time": 30,
+    "date": "2021-04-17"
 }
 
 ###
@@ -26,8 +26,8 @@ Content-Type: application/json
     "id": 1,
     "category": "Rensning",
     "title": "Rensa ogräs i bädd A2",
-    "time-est": 30,
-    "due-date": "2021-04-10"
+    "time": 30,
+    "date": "2021-04-10"
 }
 
 ###
@@ -39,8 +39,8 @@ Content-Type: application/json
     "id": 1,
     "category": "Rensning",
     "title": "Rensa ogräs i bädd A2 och A4",
-    "time-est": 60,
-    "due-date": "2021-04-11"
+    "time": 60,
+    "date": "2021-04-11"
 }
 
 ###
