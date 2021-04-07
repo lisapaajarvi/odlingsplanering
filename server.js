@@ -28,20 +28,37 @@ app.get('/api/chores', (req,res) => {
 });
 
 app.post('/api/chores', (req,res) => {
-    chores.push(req.body);
-    res.status(201).json(req.body);
+    const index = chores.findIndex(chore => chore.id === req.body.id);
+    if(index=== -1) {
+        chores.push(req.body);
+        res.status(201).json(req.body);  
+    }
+    else {
+        res.status(418).json(req.body)
+    }
+
 });
 
 app.delete('/api/chores', (req,res) => {
     const index = chores.findIndex(chore => chore.id === req.body.id);
-    const deletedChore = chores.splice(index, 1);
-    res.json(deletedChore);
+    if(index!== -1) {
+        const deletedChore = chores.splice(index, 1);
+        res.status(200).json(deletedChore);  
+    }
+    else {
+        res.status(418).json(req.body);
+    }
 })
 
 app.put('/api/chores', (req,res) => {
     const index = chores.findIndex(chore => chore.id === req.body.id);
-    const editedChore = chores.splice(index, 1, req.body);
-    res.json(editedChore);
+    if(index!== -1) {
+        const editedChore = chores.splice(index, 1);
+        res.status(200).json(editedChore);  
+    }
+    else {
+        res.status(418).json(req.body);
+    }
 })
 
 
