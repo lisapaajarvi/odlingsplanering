@@ -6,3 +6,18 @@ body {
     align-items: center;
 }
 
+main {
+    display: flex;
+    flex-direction: row;
+}
+
+.chores {
+    display: flex;
+    flex-direction: column;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
