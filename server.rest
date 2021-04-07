@@ -16,3 +16,31 @@ Content-Type: application/json
     "time-est": 30,
     "due-date": "2021-04-17"
 }
+
+###
+
+DELETE http://localhost:3000/api/chores
+Content-Type: application/json
+
+{
+    "id": 1,
+    "category": "Rensning",
+    "title": "Rensa ogräs i bädd A2",
+    "time-est": 30,
+    "due-date": "2021-04-10"
+}
+
+###
+
+PUT http://localhost:3000/api/chores
+Content-Type: application/json
+
+{
+    "id": 1,
+    "category": "Rensning",
+    "title": "Rensa ogräs i bädd A2 och A4",
+    "time-est": 60,
+    "due-date": "2021-04-11"
+}
+
+###
