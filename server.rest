@@ -2,3 +2,17 @@ GET http://localhost:3000/
 
 ###
 
+GET http://localhost:3000/api/chores
+
+###
+
+POST http://localhost:3000/api/chores
+Content-Type: application/json
+
+{
+    "id": 3,
+    "category": "Sådd",
+    "title": "Så sockerärter i pluggbrätte",
+    "time-est": 30,
+    "due-date": "2021-04-17"
+}
