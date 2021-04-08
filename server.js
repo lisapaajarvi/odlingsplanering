@@ -4,14 +4,14 @@ const app = express();
 
 let chores = [
     {
-        "id": 1,
+        "id": 2784,
         "category": "Rensning",
         "title": "Rensa ogräs i bädd A2",
         "time": 30,
         "date": "2021-04-10"
     },
     {
-        "id": 2,
+        "id": 3988,
         "category": "Sådd",
         "title": "Så lupiner i bädd A2",
         "time": 30,

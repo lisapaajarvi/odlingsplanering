@@ -47,9 +47,12 @@ function renderForm(chore) {
 
     if(chore) {
         const choreID = document.createElement('h4'); 
-        choreID.innerHTML = "uppgift #" + chore.id;
+        choreID.innerHTML = "Uppgift #" + chore.id;
         formContainer.appendChild(choreID);
     }
+    const titleHeader = document.createElement('span');
+    titleHeader.innerHTML = "Uppgiftstitel";
+    formContainer.appendChild(titleHeader);
 
     const titleInput = document.createElement('textarea'); 
     titleInput.type = "text";
@@ -63,6 +66,10 @@ function renderForm(chore) {
     }
     formContainer.appendChild(titleInput);
 
+    const timeHeader = document.createElement('span');
+    timeHeader.innerHTML = "Beräknad tidsåtgång";
+    formContainer.appendChild(timeHeader);
+
     const timeInput = document.createElement('input'); 
     timeInput.type = "number";
     timeInput.className = "input";
@@ -71,9 +78,13 @@ function renderForm(chore) {
         timeInput.value = chore.time
     }
     else {
-        timeInput.placeholder = "Fyll i uppskattad tid (min)"     
+        timeInput.placeholder = "Fyll i uppskattad tid (minuter)"     
     }
     formContainer.appendChild(timeInput);
+
+    const dateHeader = document.createElement('span');
+    dateHeader.innerHTML = "Datum";
+    formContainer.appendChild(dateHeader);
 
     const dateInput = document.createElement('input'); 
     dateInput.type = "date";
@@ -154,10 +165,8 @@ async function deleteChore() {
             },
             body: JSON.stringify(this)
         });
-        
         const result = await response.json();
         console.log(result);
-
         getChores();
         renderForm();
     }
@@ -167,21 +176,18 @@ async function deleteChore() {
 }
 
 async function editChoreInAPI(newChore) {
-    console.log("ändra i API")
     const response = await fetch('/api/chores', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json;charset=utf-8'
         },
         body: JSON.stringify(newChore)
-      });
-      
+      }); 
       const result = await response.json();
-      console.log(result); 
+      console.log(result);
 }
 
 async function addNewChoreToAPI(newChore) {
-    console.log("lägg till nytt")
     const response = await fetch('/api/chores', {
         method: 'POST',
         headers: {
@@ -189,9 +195,8 @@ async function addNewChoreToAPI(newChore) {
         },
         body: JSON.stringify(newChore)
       });
-      
       const result = await response.json();
-      console.log(result); 
+      console.log(result);
 }
 
 
