@@ -30,7 +30,27 @@ async function getChores() {
     }
 }
 
-function addNewChore() {
+async function addNewChore() {
+    const choreId = document.getElementById("id").value;
+    const choreTitle = document.getElementById("title").value;
+    const choreTime = document.getElementById("time").value;
+    const choreDate = document.getElementById("date").value;
+
+    const newChore = {id: choreId, title: choreTitle, time: choreTime, date: choreDate};
     
+
+    const response = await fetch('/api/chores', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify(newChore)
+      });
+      
+      const result = await response.json();
+      console.log(result); 
+      getChores();
+
+
 }
 
