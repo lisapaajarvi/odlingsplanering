@@ -17,8 +17,17 @@ h4 {
     text-align: center;
 }
 
+button {
+    padding: 0.5rem;
+    background-color:  lightgoldenrodyellow;
+    border-radius: 0.5rem;    
+    border: 0.1rem solid grey;
+    box-shadow: 0.1rem 0.1rem 0.2rem darkslategray;
+}
+
 .choreDiv {
     width: 90%;
+    max-width: 20rem;
     padding: 0.5rem;
     margin: 0.5rem;
     background-color: lightgoldenrodyellow;
@@ -36,10 +45,18 @@ h4 {
     max-width: 15rem;
 }
 
-#chores {
+
+
+#choreContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+#chores {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
 }
 
 #form {
@@ -48,9 +65,5 @@ h4 {
     align-items: center; 
 }
 
-#submit {
-    padding: 0.5rem;
-    background-color: lightgoldenrodyellow;
-    border-radius: 0.5rem;    
-}
+
 

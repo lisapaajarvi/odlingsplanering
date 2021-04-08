@@ -43,7 +43,13 @@ function renderForm(chore) {
         else {
             formTitle.innerHTML = "Lägg till uppgift"; 
         }
-    formContainer.appendChild(formTitle)
+    formContainer.appendChild(formTitle);
+
+    if(chore) {
+        const choreID = document.createElement('h4'); 
+        choreID.innerHTML = "uppgift #" + chore.id;
+        formContainer.appendChild(choreID);
+    }
 
     const titleInput = document.createElement('textarea'); 
     titleInput.type = "text";
@@ -92,6 +98,14 @@ function renderForm(chore) {
     formContainer.appendChild(submitButton);
 
     if(chore) {
+        const deleteButton = document.createElement('button');
+        deleteButton.type = "submit";
+        deleteButton.className = "input";
+        deleteButton.innerHTML = "Ta bort uppgift";
+        deleteButton.addEventListener("click", deleteChore.bind(chore));
+        formContainer.appendChild(deleteButton);
+    }
+    if(chore) {
         const cancelButton = document.createElement('button');
         cancelButton.type = "submit";
         cancelButton.className = "input";
@@ -130,8 +144,40 @@ function submitChore() {
     renderForm();
 }
 
-function editChoreInAPI(newChore) {
+async function deleteChore() {
+    const confirmDelete = confirm(`Vill du verkligen ta bort uppgift #${this.id}?`);
+    if(confirmDelete===true) {
+        const response = await fetch('/api/chores', {
+            method: 'DELETE',
+            headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: JSON.stringify(this)
+        });
+        
+        const result = await response.json();
+        console.log(result);
+
+        getChores();
+        renderForm();
+    }
+    else {
+        renderForm();
+    }
+}
+
+async function editChoreInAPI(newChore) {
     console.log("ändra i API")
+    const response = await fetch('/api/chores', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify(newChore)
+      });
+      
+      const result = await response.json();
+      console.log(result); 
 }
 
 async function addNewChoreToAPI(newChore) {
