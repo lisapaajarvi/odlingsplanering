@@ -1,0 +1,12 @@
+main {
+    flex-direction: column-reverse;
+    align-items: center;
+}
+
+h1 {
+    font-size: x-large;
+}
+
+h2 {
+    font-size: large;
+}

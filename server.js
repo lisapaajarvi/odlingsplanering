@@ -16,7 +16,14 @@ let chores = [
         "title": "Så lupiner i bädd A2",
         "time": 30,
         "date": "2021-04-15"
-    }
+    },
+    {
+        "id": 4589,
+        "category": "🟤 Jordbearbetning",
+        "title": "Gräv upp bädd A4",
+        "time": 120,
+        "date": "2021-04-23"
+    },
 ]
 
 app.use(express.static('public'));
