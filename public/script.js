@@ -18,13 +18,38 @@ async function getChores() {
         choreTitle.innerHTML = chore.title;
         choreDiv.appendChild(choreTitle)
 
-        const choreTime = document.createElement('p'); 
-        choreTime.innerHTML = "Uppskattad tidsåtgång: " + chore.time + " min";
+        const choreTime = document.createElement('span');
+        choreTime.innerHTML = "🕒 " + chore.time + " min";
         choreDiv.appendChild(choreTime)
 
-        const choreDate = document.createElement('p'); 
-        choreDate.innerHTML = "Slutdatum: " + chore.date;
+        const choreDate = document.createElement('span'); 
+        choreDate.innerHTML = "📆 " + chore.date;
         choreDiv.appendChild(choreDate)
+
+        const categoryIcon = document.createElement('span');
+        let icon;
+        switch(chore.category) { 
+            case "🟢 Sådd/plantering": 
+                icon = "🟢";
+                break;
+            case "🟡 Rensning":
+                icon = "🟡";
+                break; 
+            case "🔵 Vattning":
+                icon = "🔵";
+                break;
+            case "🟤 Jordbearbetning":
+                icon = "🟤";
+                break;
+            case "🟣 Skörd":
+                icon = "🟣";
+                break;
+            case "⚫ Övrigt":
+                icon = "⚫";
+                break;
+        }   
+        categoryIcon.innerHTML = icon;
+        choreDiv.appendChild(categoryIcon)
 
         choreDiv.addEventListener("click", editChore.bind(chore))
 
@@ -44,6 +69,63 @@ function renderForm(chore) {
             formTitle.innerHTML = "Lägg till en ny uppgift"; 
         }
     formContainer.appendChild(formTitle);
+
+    const categoryHeader = document.createElement('span');
+    categoryHeader.innerHTML = "Kategori";
+    formContainer.appendChild(categoryHeader);
+
+    const categorySelect = document.createElement('select'); 
+    categorySelect.className = "input";
+    categorySelect.id = "category";
+
+    const choices = [
+        "🟢 Sådd/plantering", 
+        "🟡 Rensning", 
+        "🔵 Vattning", 
+        "🟤 Jordbearbetning", 
+        "🟣 Skörd", 
+        "⚫ Övrigt"
+    ]
+
+    for (choice of choices) {
+        const option = document.createElement('option');
+        option.value = choice;
+        option.innerText = choice;
+        categorySelect.appendChild(option);
+    }
+
+    // const option1 = document.createElement('option');
+    // option1.value = "🟢 Sådd/plantering";
+    // option1.innerText = "🟢 Sådd/plantering";
+    // categorySelect.appendChild(option1);
+    // const option2 = document.createElement('option');
+    // option2.value = "🟡 Rensning"
+    // option2.innerText = "🟡 Rensning";
+    // categorySelect.appendChild(option2);
+    // const option3 = document.createElement('option');
+    // option3.value = "🔵 Vattning"
+    // option3.innerText = "🔵 Vattning";
+    // categorySelect.appendChild(option3);
+    // const option4 = document.createElement('option');
+    // option4.value = "🟤 Jordbearbetning"
+    // option4.innerText = "🟤 Jordbearbetning";
+    // categorySelect.appendChild(option4);
+    // const option5 = document.createElement('option');
+    // option5.value = "🟣 Skörd"
+    // option5.innerText = "🟣 Skörd";
+    // categorySelect.appendChild(option5);
+    // const option6 = document.createElement('option');
+    // option6.value = "🔴 Skadedjursbekämpning"
+    // option6.innerText = "🔴 Skadedjursbekämpning";
+    // categorySelect.appendChild(option6);
+    // const option6 = document.createElement('option');
+    // option6.value = "🔴 Skadedjursbekämpning"
+    // option6.innerText = "🔴 Skadedjursbekämpning";
+    // categorySelect.appendChild(option6);
+    if(chore) {
+        categorySelect.value = chore.category
+    }
+    formContainer.appendChild(categorySelect);
 
     const titleHeader = document.createElement('span');
     titleHeader.innerHTML = "Uppgiftsbeskrivning";
@@ -132,18 +214,20 @@ function editChore() {
 function submitChore() {
     let choreId = this.id;
     if(choreId) {
+        const choreCategory = document.getElementById("category").value;
         const choreTitle = document.getElementById("title").value;
         const choreTime = document.getElementById("time").value;
         const choreDate = document.getElementById("date").value;
-        const newChore = {id: choreId, title: choreTitle, time: choreTime, date: choreDate};
+        const newChore = {id: choreId, category: choreCategory, title: choreTitle, time: choreTime, date: choreDate};
         editChoreInAPI(newChore);
     }
     else {
         choreId = Math.floor(Math.random() * 10000);
+        const choreCategory = document.getElementById("category").value;
         const choreTitle = document.getElementById("title").value;
         const choreTime = document.getElementById("time").value;
         const choreDate = document.getElementById("date").value;
-        const newChore = {id: choreId, title: choreTitle, time: choreTime, date: choreDate};
+        const newChore = {id: choreId, category: choreCategory, title: choreTitle, time: choreTime, date: choreDate};
         addNewChoreToAPI(newChore);
     }
     getChores();
