@@ -144,7 +144,7 @@ function submitChore() {
         editChoreInAPI(newChore);
     }
     else {
-        choreId = Math.floor(Math.random() * 1000);
+        choreId = Math.floor(Math.random() * 10000);
         const choreTitle = document.getElementById("title").value;
         const choreTime = document.getElementById("time").value;
         const choreDate = document.getElementById("date").value;
