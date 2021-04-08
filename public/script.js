@@ -2,14 +2,14 @@ window.addEventListener("load", main)
 
 function main() {
     getChores();
-    const submitButton = document.getElementById("submit")
-    submitButton.addEventListener("click", submitChore)
+    renderForm();
 }
 
 async function getChores() {
     const response = await fetch('/api/chores');
     const chores = await response.json();
     const choreContainer = document.getElementById("chores");
+    choreContainer.innerHTML = '';
     for (chore of chores) {
         const choreDiv = document.createElement('div'); 
         choreDiv.className = "choreDiv";
@@ -109,32 +109,32 @@ function editChore() {
     renderForm(this)
 }
 
+function submitChore() {
+    let choreId = this.id;
+    if(choreId) {
+        const choreTitle = document.getElementById("title").value;
+        const choreTime = document.getElementById("time").value;
+        const choreDate = document.getElementById("date").value;
+        const newChore = {id: choreId, title: choreTitle, time: choreTime, date: choreDate};
+        editChoreInAPI(newChore);
+    }
+    else {
+        choreId = Math.floor(Math.random() * 1000);
+        const choreTitle = document.getElementById("title").value;
+        const choreTime = document.getElementById("time").value;
+        const choreDate = document.getElementById("date").value;
+        const newChore = {id: choreId, title: choreTitle, time: choreTime, date: choreDate};
+        addNewChoreToAPI(newChore);
+    }
+    getChores();
+    renderForm();
+}
+
 function editChoreInAPI(newChore) {
     console.log("ändra i API")
 }
 
-function submitChore() {
-    let choreId = 0;
-    if(this) {
-        choreId = this.id
-    }
-    else {
-        choreId = Math.floor(Math.random() * 1000);
-    }
-
-    const choreTitle = document.getElementById("title").value;
-    const choreTime = document.getElementById("time").value;
-    const choreDate = document.getElementById("date").value;
-    const newChore = {id: choreId, title: choreTitle, time: choreTime, date: choreDate};
-
-    if(this) {
-        editChoreInAPI(newChore)
-    }
-    else {
-        addNewChoreToAPI(newChore)
-    }
-}
-async function addNewChoretoAPI(newChore) {
+async function addNewChoreToAPI(newChore) {
     console.log("lägg till nytt")
     const response = await fetch('/api/chores', {
         method: 'POST',
@@ -146,8 +146,10 @@ async function addNewChoretoAPI(newChore) {
       
       const result = await response.json();
       console.log(result); 
-      getChores();
-
-
 }
+
+
+
+
+
 
