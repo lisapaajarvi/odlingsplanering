@@ -38,20 +38,15 @@ function renderForm(chore) {
 
     const formTitle = document.createElement('h2'); 
         if(chore) {
-            formTitle.innerHTML = "Ändra uppgift"; 
+            formTitle.innerHTML = `Ändra uppgift #${chore.id}`; 
         }
         else {
-            formTitle.innerHTML = "Lägg till uppgift"; 
+            formTitle.innerHTML = "Lägg till en ny uppgift"; 
         }
     formContainer.appendChild(formTitle);
 
-    if(chore) {
-        const choreID = document.createElement('h4'); 
-        choreID.innerHTML = "Uppgift #" + chore.id;
-        formContainer.appendChild(choreID);
-    }
     const titleHeader = document.createElement('span');
-    titleHeader.innerHTML = "Uppgiftstitel";
+    titleHeader.innerHTML = "Uppgiftsbeskrivning";
     formContainer.appendChild(titleHeader);
 
     const titleInput = document.createElement('textarea'); 
@@ -62,12 +57,12 @@ function renderForm(chore) {
         titleInput.value = chore.title
     }
     else {
-        titleInput.placeholder = "Fyll i uppgiftens titel"
+        titleInput.placeholder = "Fyll i uppgiftsbeskrivning"
     }
     formContainer.appendChild(titleInput);
 
     const timeHeader = document.createElement('span');
-    timeHeader.innerHTML = "Beräknad tidsåtgång";
+    timeHeader.innerHTML = "Uppskattad tidsåtgång";
     formContainer.appendChild(timeHeader);
 
     const timeInput = document.createElement('input'); 
@@ -78,12 +73,12 @@ function renderForm(chore) {
         timeInput.value = chore.time
     }
     else {
-        timeInput.placeholder = "Fyll i uppskattad tid (minuter)"     
+        timeInput.placeholder = "Uppskattad tid i minuter"     
     }
     formContainer.appendChild(timeInput);
 
     const dateHeader = document.createElement('span');
-    dateHeader.innerHTML = "Datum";
+    dateHeader.innerHTML = "Datum för färdigställande";
     formContainer.appendChild(dateHeader);
 
     const dateInput = document.createElement('input'); 
@@ -198,9 +193,3 @@ async function addNewChoreToAPI(newChore) {
       const result = await response.json();
       console.log(result);
 }
-
-
-
-
-
-

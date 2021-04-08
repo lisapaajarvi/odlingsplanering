@@ -1,5 +1,6 @@
 body {
     background-color: lightgreen;
+    font-family: 'Kiwi Maru', serif;
     color: darkslategrey;
     display: flex;
     flex-direction: column;
