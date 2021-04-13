@@ -41,7 +41,7 @@ app.post('/api/chores', (req,res) => {
         res.status(201).json(req.body);  
     }
     else {
-        res.status(418).json(req.body)
+        res.status(418).json("This id already exists!")
     }
 
 });
@@ -53,7 +53,7 @@ app.delete('/api/chores', (req,res) => {
         res.status(200).json(deletedChore);  
     }
     else {
-        res.status(418).json(req.body);
+        res.status(418).json("This chore does not exist!");
     }
 })
 
@@ -64,7 +64,7 @@ app.put('/api/chores', (req,res) => {
         res.status(200).json(editedChore, req.body);  
     }
     else {
-        res.status(418).json(req.body);
+        res.status(418).json("This chore does not exist!");
     }
 })
 
