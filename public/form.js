@@ -99,14 +99,18 @@ function renderForm(chore) {
 
     if(chore) {
         const deleteButton = document.createElement('button');
-        deleteButton.type = "submit";
         deleteButton.className = "input";
         deleteButton.innerHTML = "Ta bort uppgift";
         deleteButton.addEventListener("click", deleteChore.bind(chore));
         formContainer.appendChild(deleteButton);
 
+        const openTimerButton = document.createElement('button');
+        openTimerButton.className = "input";
+        openTimerButton.innerHTML = "Utför uppgift";
+        openTimerButton.addEventListener("click", openTimerModal.bind(chore.id));
+        formContainer.appendChild(openTimerButton);
+
         const cancelButton = document.createElement('button');
-        cancelButton.type = "submit";
         cancelButton.className = "input";
         cancelButton.innerHTML = "Avbryt";
         cancelButton.addEventListener("click", cancelChanges);
