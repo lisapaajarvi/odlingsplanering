@@ -1,37 +1,10 @@
 const express = require('express');
+const fs = require('fs');
 const port = 3000;
 const app = express();
 
-let chores = [
-    {
-        "id": 2784,
-        "category": "🟡 Rensning",
-        "title": "Rensa ogräs i bädd A2",
-        "time": 30,
-        "date": "2021-04-10"
-    },
-    {
-        "id": 3988,
-        "category": "🟢 Sådd/plantering",
-        "title": "Så lupiner i bädd A2",
-        "time": 30,
-        "date": "2021-04-15"
-    },
-    {
-        "id": 4589,
-        "category": "🟤 Jordbearbetning",
-        "title": "Gräv upp bädd A4",
-        "time": 120,
-        "date": "2021-04-23"
-    },
-    {
-        "id": 8573,
-        "category": "🟢 Sådd/plantering",
-        "title": "Så morötter i bädd A4",
-        "time": 30,
-        "date": "2021-04.28"
-    }
-]
+let choresJSON = fs.readFileSync('chores.json');
+let chores = JSON.parse(choresJSON);
 
 app.use(express.static('public'));
 
@@ -56,7 +29,9 @@ app.post('/api/chores', (req,res) => {
     const index = chores.findIndex(chore => chore.id === req.body.id);
     if(index=== -1) {
         chores.push(req.body);
-        res.status(201).json(req.body);  
+        sendDataToJSON();
+        res.status(201).json(req.body);
+          
     }
     else {
         res.status(418).json("This id already exists!")
@@ -67,6 +42,7 @@ app.delete('/api/chores', (req,res) => {
     const index = chores.findIndex(chore => chore.id === req.body.id);
     if(index!== -1) {
         const deletedChore = chores.splice(index, 1);
+        sendDataToJSON();
         res.status(200).json(deletedChore);  
     }
     else {
@@ -78,6 +54,7 @@ app.put('/api/chores', (req,res) => {
     const index = chores.findIndex(chore => chore.id === req.body.id);
     if(index!== -1) {
         const editedChore = chores.splice(index, 1, req.body);
+        sendDataToJSON();
         res.status(200).json(editedChore, req.body);  
     }
     else {
@@ -86,3 +63,8 @@ app.put('/api/chores', (req,res) => {
 })
 
 app.listen(port, () => console.log(`Server is running on http://localhost:${port}`))
+
+function sendDataToJSON() {
+    let choreData = JSON.stringify(chores, null, 2);
+    fs.writeFileSync('chores.json', choreData);
+}
