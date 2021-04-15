@@ -1,0 +1,32 @@
+{
+    "chores":[
+        {
+            "id": 2784,
+            "category": "🟡 Rensning",
+            "title": "Rensa ogräs i bädd A2",
+            "time": 30,
+            "date": "2021-04-16"
+        },
+        {
+            "id": 3988,
+            "category": "🟢 Sådd/plantering",
+            "title": "Så lupiner i bädd A2",
+            "time": 30,
+            "date": "2021-04-18"
+        },
+        {
+            "id": 4589,
+            "category": "🟤 Jordbearbetning",
+            "title": "Gräv upp bädd A4",
+            "time": 120,
+            "date": "2021-04-23"
+        },
+        {
+            "id": 8573,
+            "category": "🟢 Sådd/plantering",
+            "title": "Så morötter i bädd A4",
+            "time": 30,
+            "date": "2021-04.28"
+        }
+    ]
+}
