@@ -14,8 +14,8 @@ POST http://localhost:3000/api/chores
 Content-Type: application/json
 
 {
-    "id": 3,
-    "category": "Sådd",
+    "id": 12345,
+    "category": "🟢 Sådd/plantering",
     "title": "Så sockerärter i pluggbrätte",
     "time": 30,
     "date": "2021-04-17"
@@ -28,7 +28,7 @@ Content-Type: application/json
 
 {
     "id": 2784,
-    "category": "Rensning",
+    "category": "🟡 Rensning",
     "title": "Rensa ogräs i bädd A2",
     "time": 30,
     "date": "2021-04-10"
@@ -41,7 +41,7 @@ Content-Type: application/json
 
 {
     "id": 2784,
-    "category": "Rensning",
+    "category": "🟡 Rensning",
     "title": "Rensa ogräs i bädd A2 och A4",
     "time": 60,
     "date": "2021-04-11"

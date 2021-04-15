@@ -1,11 +1,11 @@
 window.addEventListener("load", main)
 
 function main() {
-    getChores();
+    renderChores();
     renderForm();
 }
 
-async function getChores() {
+async function renderChores() {
     const response = await fetch('/api/chores');
     const chores = await response.json();
     const choreContainer = document.getElementById("chores");
@@ -51,7 +51,7 @@ async function getChores() {
         categoryIcon.innerHTML = icon;
         choreDiv.appendChild(categoryIcon)
 
-        choreDiv.addEventListener("click", editChore.bind(chore))
+        choreDiv.addEventListener("click", showChore.bind(chore))
 
         choreContainer.appendChild(choreDiv);
     }
@@ -93,35 +93,6 @@ function renderForm(chore) {
         option.innerText = choice;
         categorySelect.appendChild(option);
     }
-
-    // const option1 = document.createElement('option');
-    // option1.value = "🟢 Sådd/plantering";
-    // option1.innerText = "🟢 Sådd/plantering";
-    // categorySelect.appendChild(option1);
-    // const option2 = document.createElement('option');
-    // option2.value = "🟡 Rensning"
-    // option2.innerText = "🟡 Rensning";
-    // categorySelect.appendChild(option2);
-    // const option3 = document.createElement('option');
-    // option3.value = "🔵 Vattning"
-    // option3.innerText = "🔵 Vattning";
-    // categorySelect.appendChild(option3);
-    // const option4 = document.createElement('option');
-    // option4.value = "🟤 Jordbearbetning"
-    // option4.innerText = "🟤 Jordbearbetning";
-    // categorySelect.appendChild(option4);
-    // const option5 = document.createElement('option');
-    // option5.value = "🟣 Skörd"
-    // option5.innerText = "🟣 Skörd";
-    // categorySelect.appendChild(option5);
-    // const option6 = document.createElement('option');
-    // option6.value = "🔴 Skadedjursbekämpning"
-    // option6.innerText = "🔴 Skadedjursbekämpning";
-    // categorySelect.appendChild(option6);
-    // const option6 = document.createElement('option');
-    // option6.value = "🔴 Skadedjursbekämpning"
-    // option6.innerText = "🔴 Skadedjursbekämpning";
-    // categorySelect.appendChild(option6);
     if(chore) {
         categorySelect.value = chore.category
     }
@@ -134,7 +105,7 @@ function renderForm(chore) {
     const titleInput = document.createElement('textarea'); 
     titleInput.type = "text";
     titleInput.className = "input";
-    titleInput.id = "title"
+    titleInput.id = "title";
     if(chore) {
         titleInput.value = chore.title
     }
@@ -150,7 +121,7 @@ function renderForm(chore) {
     const timeInput = document.createElement('input'); 
     timeInput.type = "number";
     timeInput.className = "input";
-    timeInput.id = "time"
+    timeInput.id = "time";
     if(chore) {
         timeInput.value = chore.time
     }
@@ -166,7 +137,7 @@ function renderForm(chore) {
     const dateInput = document.createElement('input'); 
     dateInput.type = "date";
     dateInput.className = "input";
-    dateInput.id = "date"
+    dateInput.id = "date";
     if(chore) {
         dateInput.value = chore.date
     }
@@ -192,8 +163,7 @@ function renderForm(chore) {
         deleteButton.innerHTML = "Ta bort uppgift";
         deleteButton.addEventListener("click", deleteChore.bind(chore));
         formContainer.appendChild(deleteButton);
-    }
-    if(chore) {
+
         const cancelButton = document.createElement('button');
         cancelButton.type = "submit";
         cancelButton.className = "input";
@@ -207,7 +177,7 @@ function cancelChanges() {
     renderForm();
 }
 
-function editChore() {
+function showChore() {
     renderForm(this)
 }
 
@@ -218,8 +188,14 @@ function submitChore() {
         const choreTitle = document.getElementById("title").value;
         const choreTime = document.getElementById("time").value;
         const choreDate = document.getElementById("date").value;
-        const newChore = {id: choreId, category: choreCategory, title: choreTitle, time: choreTime, date: choreDate};
-        editChoreInAPI(newChore);
+        const updatedChore = {
+            id: choreId, 
+            category: choreCategory, 
+            title: choreTitle, 
+            time: choreTime, 
+            date: choreDate
+        };
+        editChore(updatedChore);
     }
     else {
         choreId = Math.floor(Math.random() * 10000);
@@ -228,9 +204,9 @@ function submitChore() {
         const choreTime = document.getElementById("time").value;
         const choreDate = document.getElementById("date").value;
         const newChore = {id: choreId, category: choreCategory, title: choreTitle, time: choreTime, date: choreDate};
-        addNewChoreToAPI(newChore);
+        addNewChore(newChore);
     }
-    getChores();
+    renderChores();
     renderForm();
 }
 
@@ -246,7 +222,7 @@ async function deleteChore() {
         });
         const result = await response.json();
         console.log(result);
-        getChores();
+        renderChores();
         renderForm();
     }
     else {
@@ -254,19 +230,19 @@ async function deleteChore() {
     }
 }
 
-async function editChoreInAPI(newChore) {
+async function editChore(updatedChore) {
     const response = await fetch('/api/chores', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json;charset=utf-8'
         },
-        body: JSON.stringify(newChore)
+        body: JSON.stringify(updatedChore)
       }); 
       const result = await response.json();
       console.log(result);
 }
 
-async function addNewChoreToAPI(newChore) {
+async function addNewChore(newChore) {
     const response = await fetch('/api/chores', {
         method: 'POST',
         headers: {

@@ -37,9 +37,10 @@ button {
 }
 
 .choreDiv {
-    width: 90%;
-    max-width: 20rem;
+    width: 100%;
+    max-width: 25rem;
     padding: 0.5rem;
+    padding-bottom: 1rem;
     margin: 0.5rem;
     background-color: lightgoldenrodyellow;
     border: 0.1rem solid darkgreen;
