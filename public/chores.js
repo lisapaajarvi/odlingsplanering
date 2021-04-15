@@ -52,7 +52,6 @@ async function renderChores() {
 
 function showChore() {
     renderForm(this);
-    renderTimer(this);
 }
 
 function submitChore() {
@@ -77,8 +76,13 @@ function submitChore() {
         const choreTitle = document.getElementById("title").value;
         const choreTime = document.getElementById("time").value;
         const choreDate = document.getElementById("date").value;
-        const newChore = {id: choreId, category: choreCategory, title: choreTitle, time: choreTime, date: choreDate};
-        addNewChore(newChore);
+        if(choreTitle && choreTime && choreDate) {
+            const newChore = {id: choreId, category: choreCategory, title: choreTitle, time: choreTime, date: choreDate};
+            addNewChore(newChore);
+        }
+        else {
+            alert("Alla fält måste fyllas i!")
+        }
     }
     renderChores();
     renderForm();

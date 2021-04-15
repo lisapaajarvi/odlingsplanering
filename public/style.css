@@ -37,6 +37,22 @@ button {
     cursor: pointer;
 }
 
+#timerButton {
+    width: 50%;
+    max-width: 10rem;
+    background-color: tomato;
+    font-size: larger;
+    font-weight: bold;
+}
+
+#cancelButton {
+    width: 50%;
+    max-width: 10rem;
+    background-color: lightgoldenrodyellow;
+    font-size: larger;
+    margin-top: 1rem;
+}
+
 .choreDiv {
     width: 100%;
     max-width: 25rem;
@@ -49,15 +65,15 @@ button {
     cursor: pointer;
 }
 
-.timerDiv {
+#timerDiv {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
-    max-width: 25rem;
-    padding: 0.5rem;
-    padding-bottom: 1rem;
-    margin: 0.5rem; 
+    width: 90%;
+    height: 80%;
+    max-width: 40rem;
+    
+    padding: 1rem;
     background-image: linear-gradient(to bottom, rgba(250, 250, 210, 0.8), rgba(158, 158, 32, 0)), url('./assets/marsvin.png');
     background-repeat: no-repeat;
     background-size: cover;
@@ -81,7 +97,7 @@ background-image {
 
 #countdown {
     text-align: center;
-    font-size: xx-large;
+    font-size: 5rem;
     font-weight: bolder;
 }
 
@@ -92,7 +108,7 @@ background-image {
     align-items: center;
 }
 
-#chores, #timer {
+#chores {
     display: flex;
     flex-direction: column;
     align-items: center; 
@@ -104,5 +120,19 @@ background-image {
     max-width: 20rem;
 }
 
+#timer {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: hidden;
+    background-image: linear-gradient(180deg, #42e242, #c3f6c3);
 
+}
 
