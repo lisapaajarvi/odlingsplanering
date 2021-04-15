@@ -6,6 +6,10 @@ GET http://localhost:3000/api/chores
 
 ###
 
+GET http://localhost:3000/api/chores/2784
+
+###
+
 POST http://localhost:3000/api/chores
 Content-Type: application/json
 
@@ -23,7 +27,7 @@ DELETE http://localhost:3000/api/chores
 Content-Type: application/json
 
 {
-    "id": 1,
+    "id": 2784,
     "category": "Rensning",
     "title": "Rensa ogräs i bädd A2",
     "time": 30,
@@ -36,7 +40,7 @@ PUT http://localhost:3000/api/chores
 Content-Type: application/json
 
 {
-    "id": 1,
+    "id": 2784,
     "category": "Rensning",
     "title": "Rensa ogräs i bädd A2 och A4",
     "time": 60,

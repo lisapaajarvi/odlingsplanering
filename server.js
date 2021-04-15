@@ -24,6 +24,13 @@ let chores = [
         "time": 120,
         "date": "2021-04-23"
     },
+    {
+        "id": 8573,
+        "category": "🟢 Sådd/plantering",
+        "title": "Så morötter i bädd A4",
+        "time": 30,
+        "date": "2021-04.28"
+    }
 ]
 
 app.use(express.static('public'));
@@ -32,6 +39,17 @@ app.use(express.json());
 
 app.get('/api/chores', (req,res) => {
     res.json(chores);
+});
+
+app.get('/api/chores/:id', (req,res) => {
+    const id = req.params.id;
+    const selectedChore = chores.find(chore => chore.id == id);
+    if(selectedChore) {
+        res.status(200).json(selectedChore);  
+    }
+    else {
+        res.status(418).json("This chore does not exist!");
+    }
 });
 
 app.post('/api/chores', (req,res) => {
@@ -43,7 +61,6 @@ app.post('/api/chores', (req,res) => {
     else {
         res.status(418).json("This id already exists!")
     }
-
 });
 
 app.delete('/api/chores', (req,res) => {
@@ -55,7 +72,7 @@ app.delete('/api/chores', (req,res) => {
     else {
         res.status(418).json("This chore does not exist!");
     }
-})
+});
 
 app.put('/api/chores', (req,res) => {
     const index = chores.findIndex(chore => chore.id === req.body.id);
@@ -67,6 +84,5 @@ app.put('/api/chores', (req,res) => {
         res.status(418).json("This chore does not exist!");
     }
 })
-
 
 app.listen(port, () => console.log(`Server is running on http://localhost:${port}`))
