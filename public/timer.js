@@ -1,3 +1,4 @@
+/** global variables for the timer */
 let choreTimer;
 let activeChoreTime;
 let timerActive = false;
@@ -6,14 +7,13 @@ async function openTimerModal() {
     const choreId = this;
     const response = await fetch( `/api/chores/${choreId}`);
     const chore = await response.json(); 
-    const timerContainer = document.getElementById("timer");
-    timerContainer.style.display = "flex";
-
-    timerContainer.innerHTML = '';
+    const timerModal = document.getElementById("timer");
+    timerModal.style.display = "flex";
+    timerModal.innerHTML = '';
 
     const timerDiv = document.createElement('div'); 
     timerDiv.id = "timerDiv";
-    timerContainer.appendChild(timerDiv);
+    timerModal.appendChild(timerDiv);
 
     const choreTitle = document.createElement('h2'); 
     choreTitle.innerHTML = chore.title;
@@ -42,12 +42,11 @@ async function openTimerModal() {
     cancelButton.innerHTML = "Avbryt";
     cancelButton.addEventListener("click", cancelButtonClick);
     timerDiv.appendChild(cancelButton);
-
 }
 
 function cancelButtonClick() {
-    const timerContainer = document.getElementById("timer");
-    timerContainer.style.display = "none";
+    const timerModal = document.getElementById("timer");
+    timerModal.style.display = "none";
 }
 
 function timerButtonClick() {
@@ -63,9 +62,6 @@ function timerButtonClick() {
 
 function startTimer() {
     let countdown = document.getElementById("countdown");
-
-    console.log("klickat på start")
-    console.log(activeChoreTime)
     const pauseButton = document.getElementById("timerButton")
     pauseButton.innerHTML = "Pausa";
 
@@ -79,9 +75,9 @@ function startTimer() {
             clearInterval(choreTimer);
             const timerDiv = document.getElementById("timerDiv")
             countdown.innerHTML = "00:00";
-            const timeIsUp = document.createElement('p'); 
-            timeIsUp.innerHTML = "Tiden är ute!";
-            timerDiv.appendChild(timeIsUp)
+            pauseButton.style.display = "none";
+            const cancelButton = document.getElementById("cancelButton");
+            cancelButton.innerHTML = "Stäng";
         } else {
             countdown.innerHTML = hours > 0 ? hours + ":" + minutes + ":" + seconds : minutes + ":" + seconds;
         }
@@ -91,7 +87,6 @@ function startTimer() {
 
 function pauseTimer() {
     clearInterval(choreTimer);
-    console.log("pausklick" + activeChoreTime)
     const startButton = document.getElementById("timerButton")
     startButton.innerHTML = "Fortsätt";
 }

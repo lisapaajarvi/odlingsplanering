@@ -1,6 +1,7 @@
 * {
     box-sizing: border-box;
 }
+
 body {
     background-image: linear-gradient(180deg, #42e242, #c3f6c3);
     font-family: 'Kiwi Maru', serif;
@@ -37,21 +38,8 @@ button {
     cursor: pointer;
 }
 
-#timerButton {
-    width: 50%;
-    max-width: 10rem;
-    background-color: tomato;
-    font-size: larger;
-    font-weight: bold;
-}
 
-#cancelButton {
-    width: 50%;
-    max-width: 10rem;
-    background-color: lightgoldenrodyellow;
-    font-size: larger;
-    margin-top: 1rem;
-}
+ /* CHORES */
 
 .choreDiv {
     width: 100%;
@@ -65,25 +53,20 @@ button {
     cursor: pointer;
 }
 
-#timerDiv {
+#choreContainer, #chores {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 90%;
-    height: 80%;
-    max-width: 40rem;
-    
-    padding: 1rem;
-    background-image: linear-gradient(to bottom, rgba(250, 250, 210, 0.8), rgba(158, 158, 32, 0)), url('./assets/marsvin.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    border: 0.1rem solid darkgreen;
-    border-radius: 2rem;
-    color: black;
 }
-background-image {
-    opacity: 0.5;
+ 
+ /* FORM */
+
+#form {
+    display: flex;
+    flex-direction: column;
+    max-width: 20rem;
 }
+
 .input {
     margin: 0.5rem 0;
     padding: 0.5rem;
@@ -94,31 +77,8 @@ background-image {
     padding: 0 0.5rem;
     max-width: 15rem;
 }
-
-#countdown {
-    text-align: center;
-    font-size: 5rem;
-    font-weight: bolder;
-}
-
-
-#choreContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-#chores {
-    display: flex;
-    flex-direction: column;
-    align-items: center; 
-}
-
-#form {
-    display: flex;
-    flex-direction: column;
-    max-width: 20rem;
-}
+ 
+ /* TIMER */
 
 #timer {
     display: none;
@@ -133,6 +93,43 @@ background-image {
     height: 100%; 
     overflow: hidden;
     background-image: linear-gradient(180deg, #42e242, #c3f6c3);
+}
 
+#timerDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    height: 80%;
+    max-width: 40rem;
+    padding: 1rem;
+    background-image: linear-gradient(to bottom, rgba(250, 250, 210, 0.8), rgba(158, 158, 32, 0)), url('./assets/marsvin.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: 0.2rem solid darkgreen;
+    border-radius: 2rem;
+    color: black;
+}
+
+#countdown {
+    text-align: center;
+    font-size: 5rem;
+    font-weight: bolder;
+}
+
+#timerButton {
+    width: 50%;
+    max-width: 10rem;
+    background-color: tomato;
+    font-size: larger;
+    font-weight: bold;
+}
+
+#cancelButton {
+    width: 50%;
+    max-width: 10rem;
+    background-color: lightgoldenrodyellow;
+    font-size: larger;
+    margin-top: 1rem;
 }
 

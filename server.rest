@@ -44,7 +44,7 @@ Content-Type: application/json
     "category": "🟡 Rensning",
     "title": "Rensa ogräs i bädd A2 och A4",
     "time": 60,
-    "date": "2021-04-11"
+    "date": "2021-04-25"
 }
 
 ###
